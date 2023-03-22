@@ -1,0 +1,13 @@
+@import "color-palette";
+@import "mixins";
+
+body {
+  margin: 0;
+  padding: 0;
+  @include theme-aware("background", "color-background");
+  @include theme-aware("color", "color-foreground");
+}
+
+.container {
+  padding: 0.5rem 1.25rem;
+}
