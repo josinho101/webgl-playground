@@ -1,11 +1,13 @@
 import { useState } from "react";
 
+import { Box } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Drawer, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { Drawer, Grid, IconButton, Typography } from "@mui/material";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const anchor = "left";
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = (e) => {
     if (e.type === "keydown" && (e.key === "Tab" || e.key === "Shift")) {
@@ -27,7 +29,36 @@ const Sidebar = () => {
       >
         <MenuIcon />
       </IconButton>
-      <Drawer open={isOpen} anchor={anchor} onClose={toggleDrawer} />
+      <Drawer
+        open={isOpen}
+        anchor={anchor}
+        papercl
+        PaperProps={{
+          className: "drawer-paper",
+        }}
+        onClose={toggleDrawer}
+      >
+        <Box>
+          <Grid container>
+            <Grid item xs={6} className="options-title">
+              <Typography variant="subtitle1" className="options-title-text">
+                Draw Options
+              </Typography>
+            </Grid>
+            <Grid item xs={6} className="options-close">
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleDrawer}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
+        </Box>
+      </Drawer>
     </>
   );
 };
