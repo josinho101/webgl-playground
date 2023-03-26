@@ -12,11 +12,13 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Tooltip, Zoom } from "@mui/material";
+import { drawTypes } from "../../constants";
 
 const Sidebar = () => {
   const anchor = "left";
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isTooltipOpen, setIsTooltipOpen] = useState(true);
+  const [drawType, setDrawType] = useState(drawTypes.twoDimensional);
 
   const toggleDrawer = (e) => {
     if (e.type === "keydown" && (e.key === "Tab" || e.key === "Shift")) {
@@ -31,6 +33,10 @@ const Sidebar = () => {
     if (isTooltipOpen) {
       setIsTooltipOpen(!isTooltipOpen);
     }
+  };
+
+  const handleDrawTypeChange = (event) => {
+    setDrawType(event.target.value);
   };
 
   const renderHamburgerMenu = () => {
@@ -96,23 +102,39 @@ const Sidebar = () => {
         <Box>
           <Grid container>
             <Grid item xs={6} className="options-title">
-              <Typography variant="subtitle1" className="options-title-text">
+              <Typography
+                variant="subtitle1"
+                className="options-title-text"
+                sx={{
+                  textDecorationLine: "underline",
+                  textDecorationStyle: "wavy",
+                  textDecorationColor: "#f00",
+                }}
+              >
                 Draw Options
               </Typography>
             </Grid>
-            <Grid item xs={6} className="options-close">
+            <Grid
+              item
+              xs={6}
+              className="options-close"
+              sx={{ textAlign: "right" }}
+            >
               <IconButton
                 size="large"
                 edge="start"
                 color="inherit"
                 aria-label="menu"
                 onClick={toggleDrawer}
+                sx={{
+                  padding: 0,
+                }}
               >
                 <CloseIcon />
               </IconButton>
             </Grid>
           </Grid>
-          <Box>
+          <Box sx={{ marginTop: (theme) => theme.spacing(4) }}>
             <FormControl fullWidth>
               <InputLabel
                 id="draw-type-select-label"
@@ -123,16 +145,22 @@ const Sidebar = () => {
               </InputLabel>
               <Select
                 variant="standard"
-                labelId="draw-type-select-label"
                 className="select"
+                value={drawType}
+                onChange={handleDrawTypeChange}
+                labelId="draw-type-select-label"
                 sx={{
                   "& .MuiSvgIcon-root": {
                     color: "white",
                   },
                 }}
               >
-                <MenuItem value="2D">2D</MenuItem>
-                <MenuItem value="3D">3D</MenuItem>
+                <MenuItem value={drawTypes.twoDimensional}>
+                  {drawTypes.twoDimensional}
+                </MenuItem>
+                <MenuItem value={drawTypes.threeDimensional}>
+                  {drawTypes.threeDimensional}
+                </MenuItem>
               </Select>
             </FormControl>
           </Box>
