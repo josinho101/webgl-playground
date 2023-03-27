@@ -1,13 +1,7 @@
-import { useEffect } from "react";
-
 import { Container } from "@mui/material";
 import Sidebar from "./components/sidebar";
 
 const App = () => {
-  useEffect(() => {
-    document.documentElement.classList.add(`theme-dark`);
-  }, []);
-
   return (
     <Container
       sx={{
