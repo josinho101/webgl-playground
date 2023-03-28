@@ -1,22 +1,15 @@
 import { useState } from "react";
 
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Grid from "@mui/material/Grid";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import Typography from "@mui/material/Typography";
-import MenuItem from "@mui/material/MenuItem";
-import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import { Tooltip, Zoom } from "@mui/material";
+import { Typography, IconButton } from "@mui/material";
+import { Box, Drawer, Grid, Tooltip, Zoom } from "@mui/material";
+
+import SelectWithLabel from "../selectwithlabel";
 import { drawTypes, threeDShapes, twoDShapes } from "../../constants";
 
 const Sidebar = () => {
   const anchor = "left";
-  const marginTop = 4;
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isTooltipOpen, setIsTooltipOpen] = useState(true);
   const [drawType, setDrawType] = useState(drawTypes.threeDimensional);
@@ -149,67 +142,21 @@ const Sidebar = () => {
               </IconButton>
             </Grid>
           </Grid>
-          <Box sx={{ marginTop: (theme) => theme.spacing(marginTop) }}>
-            <FormControl fullWidth>
-              <InputLabel
-                id="draw-type-select-label"
-                variant="standard"
-                className="select-label"
-              >
-                Draw Type
-              </InputLabel>
-              <Select
-                variant="standard"
-                className="select"
-                value={drawType}
-                onChange={handleDrawTypeChange}
-                labelId="draw-type-select-label"
-                sx={{
-                  "& .MuiSvgIcon-root": {
-                    color: "white",
-                  },
-                }}
-              >
-                <MenuItem value={drawTypes.twoDimensional}>
-                  {drawTypes.twoDimensional}
-                </MenuItem>
-                <MenuItem value={drawTypes.threeDimensional}>
-                  {drawTypes.threeDimensional}
-                </MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl
-              sx={{ marginTop: (theme) => theme.spacing(marginTop) }}
-              fullWidth
-            >
-              <InputLabel
-                id="draw-type-select-shapes"
-                variant="standard"
-                className="select-label"
-              >
-                Shape
-              </InputLabel>
-              <Select
-                value={shape}
-                variant="standard"
-                className="select"
-                onChange={handleShapeChange}
-                labelId="draw-type-select-shapes"
-                sx={{
-                  "& .MuiSvgIcon-root": {
-                    color: "white",
-                  },
-                }}
-              >
-                {Object.keys(shapes).map((item) => {
-                  return (
-                    <MenuItem key={item} value={shapes[item]}>
-                      {shapes[item]}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl>
+          <Box>
+            <SelectWithLabel
+              id="draw-type-select"
+              label="Draw Type"
+              value={drawType}
+              items={drawTypes}
+              onChange={handleDrawTypeChange}
+            />
+            <SelectWithLabel
+              id="shapes-select"
+              label="Shape"
+              value={shape}
+              items={shapes}
+              onChange={handleShapeChange}
+            />
           </Box>
         </Box>
       </Drawer>
