@@ -6,14 +6,17 @@ import { Typography, IconButton } from "@mui/material";
 import { Box, Drawer, Grid, Tooltip, Zoom } from "@mui/material";
 
 import SelectWithLabel from "../selectwithlabel";
+import SliderWithLabel from "../sliderwithlabel";
 import { drawTypes, threeDShapes, twoDShapes } from "../../constants";
 
 const Sidebar = () => {
   const anchor = "left";
+  const SidebarWidth = 300;
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isTooltipOpen, setIsTooltipOpen] = useState(true);
   const [drawType, setDrawType] = useState(drawTypes.threeDimensional);
   const [shape, setShape] = useState(threeDShapes.cube);
+  const [scale, setScale] = useState(5);
 
   const toggleDrawer = (e) => {
     if (e.type === "keydown" && (e.key === "Tab" || e.key === "Shift")) {
@@ -101,8 +104,8 @@ const Sidebar = () => {
         sx={{
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: 250,
-            padding: 2,
+            width: SidebarWidth,
+            padding: 3,
           },
         }}
         onClose={toggleDrawer}
@@ -157,6 +160,7 @@ const Sidebar = () => {
               items={shapes}
               onChange={handleShapeChange}
             />
+            <SliderWithLabel label="Scale" value={scale} onChange={setScale} />
           </Box>
         </Box>
       </Drawer>
