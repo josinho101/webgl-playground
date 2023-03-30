@@ -11,7 +11,7 @@ const SliderWithLabel = (props) => {
       setValue(newValue);
     }
 
-    onChange && onChange(value);
+    onChange && onChange(newValue);
   };
 
   return (

@@ -16,7 +16,7 @@ const Sidebar = () => {
   const [isTooltipOpen, setIsTooltipOpen] = useState(true);
   const [drawType, setDrawType] = useState(drawTypes.threeDimensional);
   const [shape, setShape] = useState(threeDShapes.cube);
-  const [scale, setScale] = useState(5);
+  const [scale, setScale] = useState(1);
 
   const toggleDrawer = (e) => {
     if (e.type === "keydown" && (e.key === "Tab" || e.key === "Shift")) {
@@ -83,7 +83,7 @@ const Sidebar = () => {
           edge="start"
           color="inherit"
           aria-label="menu"
-          sx={{ mr: 2 }}
+          sx={{ mr: 2, position: "absolute", left: "2rem", top: "1rem" }}
           onClick={toggleDrawer}
         >
           <MenuIcon />
