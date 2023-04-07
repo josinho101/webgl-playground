@@ -74,7 +74,7 @@ const Sidebar = () => {
               </Grid>
             </Grid>
             <div>Click on menu icon to open settings.</div>
-            <div>Try out different options by changing draw settings.</div>
+            <div>Try out different drawing options by changing settings.</div>
           </>
         }
       >

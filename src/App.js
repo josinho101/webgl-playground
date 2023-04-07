@@ -10,8 +10,8 @@ const App = () => {
         minWidth: "100vw",
         minHeight: "100vh",
         backgroundColor: "#a2a1a5",
-        padding: 0,
       }}
+      disableGutters={true}
     >
       <Sidebar />
       <Stage />
